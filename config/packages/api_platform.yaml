@@ -1,0 +1,28 @@
+api_platform:
+    title: API Platform
+    version: 1.0.0
+    defaults:
+        stateless: true
+        cache_headers:
+            vary: ['Content-Type', 'Authorization', 'Origin']
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    graphql:
+        graphql_playground:
+            enabled: false
+        graphiql:
+            enabled: false
+    swagger:
+        versions: [ 3 ]
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header    
+
+when@dev:
+    api_platform:
+        graphql:
+            graphql_playground:
+                enabled: false
+            graphiql:
+                enabled: true
