@@ -36,3 +36,4 @@ Exclude soft deleted trades and transactions from response.
 
 For this test, I used the repository pattern with interfaces and a Validator for the field requirements.
 I also applied a global trait for not fetching soft-deleted data.
+And I did take the liberty to create a new migration, adding a sequence, and setting the id fields to be auto-incrementing
