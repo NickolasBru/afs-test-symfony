@@ -5,18 +5,14 @@ namespace App\Entity;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
-use App\Interfaces\TradeInterface;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
 use App\Repository\TradeRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 

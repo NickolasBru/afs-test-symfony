@@ -47,13 +47,20 @@ class TradeController extends AbstractController
         }
 
         //If everything is ok, sent the data to the repository
-        $trade = $this->tradeRepository->create($data);
+        try {
+            $trade = $this->tradeRepository->create($data);
 
-        // Serialize collection to JSON
-        $json = $this->serializer->serialize($trade, 'json', ['groups' => 'trade:read']);
+            return $this->json($trade, Response::HTTP_OK, [], ['groups' => 'trade:read']);
 
+        } catch (\Exception $e){
+            $logger->error('An error occurred: ' . $e->getMessage());
 
-        return new JsonResponse($json, Response::HTTP_OK, [], true);
+            // Return a JSON response with the error
+            return $this->json([
+                'success' => false,
+                'error' => $e->getMessage(),
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     #[Route('/api/trade', name: 'trade_index', methods: ['GET'])]

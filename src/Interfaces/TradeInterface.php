@@ -14,13 +14,7 @@ interface TradeInterface
 
     public function getById(int $tradeId): ?Trade;
 
-    public function updateById(int $tradeId, array $params): ?Trade;
-
-    public function insert(array $params): bool;
-
     public function create(array $params): Trade;
-
-    public function update(Trade $trade, array $params): Trade;
 
     public function getNumber(string $number): ?string;
 

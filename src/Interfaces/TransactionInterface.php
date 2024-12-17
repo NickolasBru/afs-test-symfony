@@ -14,14 +14,6 @@ interface TransactionInterface
 
     public function getById(int $transactionId): ?Transaction;
 
-    public function updateById(int $transactionId, array $params): ?Transaction;
-
-    public function insert(array $params): bool;
-
     public function create(array $params): Transaction;
-
-    public function update(Transaction $transaction, array $params): Transaction;
-
-    public function getNumber(string $number): ?string;
 
 }

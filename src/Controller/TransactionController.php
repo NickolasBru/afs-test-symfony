@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Relay\Exception;
 use Psr\Log\LoggerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\TransactionRepository;
@@ -43,12 +44,19 @@ class TransactionController extends AbstractController
         }
 
         //If everything is ok, sent the data to the repository
-        $transaction = $this->transactionRepository->create($data);
+        try {
+            $transaction = $this->transactionRepository->create($data);
 
-        // Serialize collection to JSON
-        $json = $this->serializer->serialize($transaction, 'json', ['groups' => 'transaction:read']);
+            return $this->json($transaction, Response::HTTP_OK, [], ['groups' => 'transaction:read']);
 
-        return new JsonResponse($json, Response::HTTP_OK, [], true);
+        } catch (\Exception $e){
+            $logger->error('An error occurred: ' . $e->getMessage());
+
+            return $this->json([
+                'success' => false,
+                'error' => $e->getMessage(),
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     #[Route('/api/transaction', name: 'transaction_index', methods: ['GET'])]

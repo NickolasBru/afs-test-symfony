@@ -46,7 +46,7 @@ class TransactionRepository extends ServiceEntityRepository implements Transacti
         $transaction->setCreatedAt(new \DateTimeImmutable());
         $transaction->setUpdatedAt(new \DateTimeImmutable());
 
-        // Persist the entity using the correct method
+        //Save the data
         $this->getEntityManager()->persist($transaction);
         $this->getEntityManager()->flush();
 
@@ -56,43 +56,6 @@ class TransactionRepository extends ServiceEntityRepository implements Transacti
     public function getById(int $transactionId): ?Transaction
     {
         return $this->find($transactionId);
-    }
-
-    public function updateById(int $transactionId, array $params): ?Transaction
-    {
-        $transaction = $this->find($transactionId);
-        if ($transaction) {
-            $transaction->setNote($params['note'] ?? $transaction->getNote());
-            $transaction->setUpdatedAt(new \DateTime());
-            $this->_em->flush();
-        }
-        return $transaction;
-    }
-
-    public function insert(array $params): bool
-    {
-        // Logic for inserting a transaction
-        return true;
-    }
-
-    public function update(Transaction $transaction, array $params): Transaction
-    {
-        // Logic for updating a transaction
-        return $transaction;
-    }
-
-    public function getNumber(string $number): ?string
-    {
-        return $this->findOneBy(['number' => $number]);
-    }
-
-    private function generateNumber(): string
-    {
-        $number = strtoupper(substr(bin2hex(random_bytes(5)), 0, 10));
-        if ($this->getNumber($number)) {
-            return $this->generateNumber();  // Generate a new number if the current one already exists
-        }
-        return $number;
     }
 
     public function getAll(): array

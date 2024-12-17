@@ -46,29 +46,6 @@ class TradeRepository extends ServiceEntityRepository implements TradeInterface
         return $this->find($tradeId);
     }
 
-    public function updateById(int $tradeId, array $params): ?Trade
-    {
-        $trade = $this->find($tradeId);
-        if ($trade) {
-            $trade->setNote($params['note'] ?? $trade->getNote());
-            $trade->setUpdatedAt(new \DateTime());
-            $this->_em->flush();
-        }
-        return $trade;
-    }
-
-    public function insert(array $params): bool
-    {
-        // Logic for inserting a trade
-        return true;
-    }
-
-    public function update(Trade $trade, array $params): Trade
-    {
-        // Logic for updating a trade
-        return $trade;
-    }
-
     public function getNumber(string $number): ?string
     {
         return $this->findOneBy(['number' => $number]);
