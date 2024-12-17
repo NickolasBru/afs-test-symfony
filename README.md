@@ -32,26 +32,7 @@ Exclude soft deleted trades and transactions from response.
 - All endpoints must be GraphQL-based (not REST)
 - Implement proper input validation
 
-### Time Limit
-You have 7 days to complete the test.
-Maximum time allocation: 3-4 hours
-If not completed within the time limit, submit the work completed so far
+## Decision making
 
-## Useful Resources
-https://graphql.org/learn/queries/
-https://graphql.org/learn/mutations/
-https://api-platform.com/docs/core/graphql/
-
-
-## Questions
-Feel free to ask any questions for clarification during the test.
-
-
-## Submission
-
-To hand in the project, please create a repository in a place of your choosing and invite mvanloon@afsgroup.nl, fandrade@afsgroup.nl and aromanchenko@afsgroup.nl
-
-Also add:
-- Brief explanation of choices made in development, you are expected to be able to explain in detail during the interview.
-
-Good luck!
+For this test, I used the repository pattern with interfaces and a Validator for the field requirements.
+I also applied a global trait for not fetching soft-deleted data.
